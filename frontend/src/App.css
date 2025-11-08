@@ -5,7 +5,53 @@
     text-align: center;
 }
 
-.logo {
+h1 {
+    font-family: var(--heading-font);
+    font-size: 4em; 
+    margin: 0px;
+}
+
+.instructions {
+    margin-top: -10px;
+    margin-bottom: 50px;
+}
+
+.center-container {
+    height: 80vh;
+    display: grid;
+    align-content: center;
+}
+
+#symtomInputBox {
+    width: 50vw !important;
+    font-family: var(--body-font);
+    font-size: 1.2em;
+    padding: 15px;
+    
+    field-sizing: content;   /* Enables automatic height adjustment based on content */
+    min-height: 2lh;         /* Sets a minimum height of 2 lines of text */
+    max-height: 10lh;        /* Sets a maximum height of 10 lines of text */
+    overflow-y: auto;        /* Adds a scrollbar if content exceeds max-height */
+    resize: vertical;        /* Allows manual vertical resizing by the user (optional) */
+}
+
+#submitSymtoms {
+    font-family: var(--heading-font);
+    margin-top: 1em;
+    padding: 15px 25px;
+    font-size: 1.5em;
+    cursor: pointer;
+
+    background-color: var(--primary);
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+}
+#submitSymtoms:active {
+    opacity: 0.8;
+}
+
+/* .logo {
     height: 6em;
     padding: 1.5em;
     will-change: filter;
@@ -42,4 +88,4 @@
 
 .read-the-docs {
     color: #888;
-}
+} */
