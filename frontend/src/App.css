@@ -30,7 +30,7 @@ h1 {
 #symtomInputBox {
     width: min(50vw, 1000px) !important;
     font-family: var(--body-font);
-    font-size: 1.2em;
+    font-size: 1em;
     padding: 15px;
     
     field-sizing: content;   /* Enables automatic height adjustment based on content */
@@ -52,7 +52,7 @@ h1 {
 
 #submitSymtoms {
     font-family: var(--heading-font);
-    margin-top: 1em;
+    margin-top: 1.1em;
     padding: 15px 25px;
     font-size: 1.5em;
     cursor: pointer;

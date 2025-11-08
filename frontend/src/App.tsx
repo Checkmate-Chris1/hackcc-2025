@@ -22,7 +22,11 @@ function App() {
 
     const messages = [
         "I haven't been feeling well...",
+        "There's been this thing...",
         "I've been having pain...",
+        "Well, for starters...",
+        "Lately, I've noticed...",
+        "It's been hard to explain...",
     ];
 
     const [splash, setSplash] = useState("");
