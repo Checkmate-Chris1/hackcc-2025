@@ -1,8 +1,7 @@
-
 :root {
     --text: #0a1f17;
     --background: #fbfefd;
-    --element-background: #f3f3f3;
+    --element-background: rgba(245, 245, 245, 1);
     --element-shadow: #c9c9c9;
     --primary: #0bd698;
     --secondary: #aeead9;
