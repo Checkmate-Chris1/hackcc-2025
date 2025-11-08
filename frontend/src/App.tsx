@@ -6,50 +6,61 @@ import "./App.css"
 function App() {
 
   const [response, setResponse] = useState('')
-
+  const [input, setInput] = useState('') // <-- state for textbox
 
   // USE THIS FOR GETTING AND SENDING A MESSAGE TO THE BACKEND
   const sendMessage = async () => {
-  try {
-    const res = await fetch("http://127.0.0.1:5000/send_message", {
-      method: "POST",
-    })
-    const text = await res.text()
-    setResponse(text)
-  } catch (err) {
-    console.error(err)
+    try {
+      const res = await fetch("http://127.0.0.1:5000/send_message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },  // important!
+        body: JSON.stringify({ message: input })           // send textbox value
+      })
+      const text = await res.text()
+      setResponse(text)
+    } catch (err) {
+      console.error(err)
+    }
   }
-}
-///////////
 
+  return (
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
 
-    return (
-        <>
-            <div>
-                <a href="https://vite.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo" />
-                </a>
-            </div>
-
-            <h1>Vite + React</h1>
+      <h1>Vite + React</h1>
 
       <div className="card">
+        {/* Textbox added above the button */}
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type a message..."
+        />
+
+        {/* Existing send button */}
         <button onClick={sendMessage}>Send Message</button>
+
+        {/* Backend response */}
         <p>{response}</p>
 
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
 
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </>
-    )
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
 }
 
 export default App
