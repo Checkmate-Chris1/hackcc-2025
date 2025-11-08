@@ -1,8 +1,10 @@
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 # creating the databasse
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
@@ -25,9 +27,9 @@ with app.app_context():
 
 @app.route("/send_message", methods=["POST"])
 def send_message():
-    msg = request.form.get("message")
-    return f"You sent: {msg}"
-
+    data = request.get_json()     
+    msg = data.get("message", "") 
+    return f"Backend received: {msg}"
 
 
 if __name__ == "__main__":

@@ -8,14 +8,19 @@ function App() {
   const [response, setResponse] = useState('')
 
   const sendMessage = async () => {
-    const res = await fetch('http://127.0.0.1:5000/send_message', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: 'Hello from React button!' }),
+  try {
+    const res = await fetch("http://127.0.0.1:5000/send_message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: "Hello from React button!" }),
     })
-    const text = await res.text()
-    setResponse(text)
+    const text = await res.text() 
+    setResponse(text)              
+  } catch (err) {
+    console.error(err)
   }
+}
+
 
   return (
     <>
