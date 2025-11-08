@@ -4,7 +4,18 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [response, setResponse] = useState('')
+
+  const sendMessage = async () => {
+    const res = await fetch('http://127.0.0.1:5000/send_message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: 'Hello from React button!' }),
+    })
+    const text = await res.text()
+    setResponse(text)
+  }
 
   return (
     <>
@@ -16,15 +27,18 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+
       <h1>Vite + React</h1>
+
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <button onClick={sendMessage}>Send Message</button>
+        <p>{response}</p>
+
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
+
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
