@@ -1,0 +1,111 @@
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    font-family: var(--body-font);
+    color: var(--text);
+    background-color: var(--background);
+}
+
+.searchForm {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.searchInput {
+    flex: 1;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    box-shadow: 0 6px rgba(0, 0, 0, 0.1);
+    background: var(--element-background);
+    border-radius: 6px 0 0 6px;
+    outline: none;
+    font-family: var(--body-font);
+}
+
+.submitButton {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: var(--background);
+    cursor: pointer;
+    border-radius: 0 6px 6px 0;
+    border: none;
+    outline: none;
+    box-shadow: 0 6px var(--accent);
+    transition: all 0.1s ease-in-out;
+    font-family: var(--body-font);
+}
+
+.submitButton:hover,
+.submitButton:focus {
+    box-shadow: 0 6px var(--accent), inset 0 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:active {
+    box-shadow: var(--accent);
+    transform: translateY(6px);
+}
+
+/* Layout */
+.contentWrapper {
+    display: flex;
+    gap: 20px;
+}
+
+/* Tabs vertical */
+.tabs {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+}
+
+.tabButton {
+    padding: 12px;
+    margin-bottom: 6px;
+    background: var(--secondary);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: var(--body-font);
+    transition: all 0.1s, scale 0.075s;
+}
+
+
+.tabButton:active {
+    scale: 0.95;
+}
+
+.tabButton:hover:not(.active),
+.tabButton:focus:not(.active) {
+    background: var(--primary);
+    color: var(--background);
+}
+
+.active {
+    background: var(--primary);
+    color: var(--background);
+    box-shadow: 40px 0 0 var(--primary);
+}
+
+.tabContent {
+    flex: 1;
+    padding: 20px;
+    background: var(--element-background);
+    border-radius: 12px;
+    box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1);
+    min-height: 200px;
+    z-index: 100;
+}
+
+.diseaseTitle {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--text);
+    font-family: var(--heading-font);
+}
