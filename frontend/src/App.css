@@ -10,10 +10,15 @@ h1 {
     font-size: 4em; 
     margin: 0px;
 }
+.color-primary {
+    color: var(--primary);
+    text-shadow: 
+    0 0 69px var(--third); /* Larger, softer glow */
+}
 
 .instructions {
     margin-top: -10px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .center-container {
@@ -23,7 +28,7 @@ h1 {
 }
 
 #symtomInputBox {
-    width: 50vw !important;
+    width: min(50vw, 1000px) !important;
     font-family: var(--body-font);
     font-size: 1.2em;
     padding: 15px;
@@ -32,7 +37,17 @@ h1 {
     min-height: 2lh;         /* Sets a minimum height of 2 lines of text */
     max-height: 10lh;        /* Sets a maximum height of 10 lines of text */
     overflow-y: auto;        /* Adds a scrollbar if content exceeds max-height */
-    resize: vertical;        /* Allows manual vertical resizing by the user (optional) */
+    resize: vertical;
+
+    border: none;
+    outline: none;
+    background-color: var(--element-background);
+    box-shadow: 0 8px 0 0 var(--element-shadow);
+    border-radius: 10px;
+}
+#symtomInputBox::placeholder {
+  color: var(--element-shadow);
+  opacity: 1;
 }
 
 #submitSymtoms {
@@ -42,50 +57,21 @@ h1 {
     font-size: 1.5em;
     cursor: pointer;
 
-    background-color: var(--primary);
     color: var(--text);
     border: none;
+    outline: none;
     border-radius: 10px;
+    background-color: var(--element-background);
+    box-shadow: 0 8px 0 0 var(--element-shadow);
+}
+#submitSymtoms:hover, #submitSymtoms:focus {
+    transition: all 0.2s ease-in-out;
+    background-color: var(--primary);
+    color: var(--background);
+    box-shadow: 0 8px 0 0 var(--accent);
 }
 #submitSymtoms:active {
-    opacity: 0.8;
+    transition: all 0.1s ease-in-out;
+    transform: translateY(8px);
+    box-shadow: 0 0 0 0 var(--accent);
 }
-
-/* .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
-    }
-}
-
-.card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #888;
-} */

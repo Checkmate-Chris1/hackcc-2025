@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -20,16 +20,29 @@ function App() {
     }
     ///////////
 
+    const messages = [
+        "I haven't been feeling well...",
+        "I've been having pain...",
+    ];
+
+    const [splash, setSplash] = useState("");
+
+    useEffect(() => {
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        setSplash(randomMessage);
+    }, []);
 
     return (
         <>
 
             <div className="center-container">
 
-                <h1>Welcome to Sitename</h1>
+                <h1>Welcome to <span className='color-primary'>Sitename</span>!</h1>
 
-                <p className='instructions'>
-                    Please enter your symptoms below and click "Submit" to receive a preliminary analysis.
+                <p className='instructions'>    
+                    Write out your feelings and symptoms in the text box below, and our AI will suggest remedies.
+                    <br />
+                    Don't think about it too much, just write as if you're chatting to a friend.
                 </p>
 
                 <div className="input-area">
@@ -39,7 +52,7 @@ function App() {
                         id="symtomInputBox"
                         cols={90}
                         rows={10}
-                        placeholder="Enter your text here...">
+                        placeholder={splash}>
                     </textarea>
 
                     <br />
