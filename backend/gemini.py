@@ -17,7 +17,7 @@ def get_symptoms(user_input: str) -> list[str]:
     Extracts symptoms from user input using the Gemini API.
     Returns a list of recognized symptoms.
     """
-    prompt = create_prompt(user_input)
+    prompt = _create_prompt(user_input)
 
     client = genai.Client(api_key=API_KEY)
 
@@ -36,9 +36,9 @@ def get_symptoms(user_input: str) -> list[str]:
     
 
 
-def create_prompt(user_input: str) -> str:
+def _create_prompt(user_input: str) -> str:
     """
-    Created a formatted prompt for the Gemini API based on user input.
+    Creates a formatted prompt for the Gemini API based on user input.
     It requests a JSON response containing possible symptoms.
     """
     return f'{SICKNESS_PROMPT}\
@@ -46,11 +46,3 @@ def create_prompt(user_input: str) -> str:
             USER INPUT: {user_input}\
             \n\
             POSSIBLE SYMPTOMS: {POSSIBLE_SYMPTOMS}'
-
-
-if __name__ == "__main__":
-    print(API_KEY)
-    quit(0)
-    test_input = "my penis burns when I pee and I've been having chills and sex hurts me"
-    symptoms = get_symptoms(test_input)
-    print("Extracted symptoms:", symptoms)
