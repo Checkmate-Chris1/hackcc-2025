@@ -27,9 +27,12 @@ with app.app_context():
 
 @app.route("/send_message", methods=["POST"])
 def send_message():
-    data = request.get_json()     
-    msg = data.get("message", "") 
-    return f"Backend received: {msg}"
+    # Generate the message on the backend
+    backend_message = "hello I am the backend how do you do"
+    return backend_message
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 if __name__ == "__main__":
