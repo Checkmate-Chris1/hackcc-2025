@@ -25,11 +25,14 @@ class Data(db.Model):
 with app.app_context():
     db.create_all()
 
+
+##### USE THIS FOR GETTING AND SENDING A MESSAGE TO FRONT END
 @app.route("/send_message", methods=["POST"])
 def send_message():
-    # Generate the message on the backend
+    # MESSAGE TO FRONT END TEST
     backend_message = "hello I am the backend how do you do"
     return backend_message
+#####
 
 if __name__ == "__main__":
     app.run(debug=True)

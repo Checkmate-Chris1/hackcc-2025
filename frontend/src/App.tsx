@@ -7,6 +7,8 @@ function App() {
 
   const [response, setResponse] = useState('')
 
+
+  // USE THIS FOR GETTING AND SENDING A MESSAGE TO THE BACKEND
   const sendMessage = async () => {
   try {
     const res = await fetch("http://127.0.0.1:5000/send_message", {
@@ -18,6 +20,7 @@ function App() {
     console.error(err)
   }
 }
+///////////
 
 
   return (
