@@ -14,6 +14,7 @@ export default function ResultsPage() {
 
     return (
         <div className={styles.container}>
+            <h1 className="color-primary">Sitename</h1>
             <form className={styles.searchForm} onSubmit={handleSubmit}>
                 <input
                     type="text"
