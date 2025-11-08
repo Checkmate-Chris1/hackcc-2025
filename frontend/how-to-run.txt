@@ -1,0 +1,10 @@
+Running the website's frontend (the actual site that people see):
+
+1. Make sure you have node.js installed on your computer. If you don't, go to nodejs.org 
+
+2. Right click on the frontend folder and click "Open in Integrated Terminal"
+(ex. "C:\Users\My-User\Documents\GitHub\hackcc-2025\frontend")
+
+3. Type "npm install". (You only have to do this once ever)
+
+Then once you are there type in "npm run dev" and it should start the website.
