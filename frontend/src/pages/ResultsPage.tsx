@@ -1,56 +1,22 @@
-import { useState } from 'react';
-import styles from './ResultsPage.module.css';
 import type { Results } from '../App.tsx';
+import ResultsTabs from '../components/ResultsTabs.tsx';
+import ResultsHeader from '../components/ResultsHeader.tsx';
 
 interface Props {
     page: string
     setPage: ((page: ("home" | "results")) => void)
     search: string
     setSearch: ((search: string) => void)
-    results: Results
+    results: Results[]
 }
 
-export default function ResultsPage({ page, setPage, search, setSearch, results }: Props) {
-    const [activeTab, setActiveTab] = useState<'home' | 'conventional' | 'otc' | 'herbal'>('home');
-
+export default function ResultsPage(props: Props) {
     return (
-        <div className={styles.container}>
-            <div className={styles.contentWrapper}>
-                <div className={styles.tabs}>
-                    <button
-                        className={`${styles.tabButton} ${activeTab === 'home' ? styles.active : ''}`}
-                        onClick={() => setActiveTab('home')}
-                    >
-                        Home Remedy
-                    </button>
-                    <button
-                        className={`${styles.tabButton} ${activeTab === 'conventional' ? styles.active : ''}`}
-                        onClick={() => setActiveTab('conventional')}
-                    >
-                        Conventional
-                    </button>
-                    <button
-                        className={`${styles.tabButton} ${activeTab === 'otc' ? styles.active : ''}`}
-                        onClick={() => setActiveTab('otc')}
-                    >
-                        Over the Counter
-                    </button>
-                    <button
-                        className={`${styles.tabButton} ${activeTab === 'herbal' ? styles.active : ''}`}
-                        onClick={() => setActiveTab('herbal')}
-                    >
-                        Herbal
-                    </button>
-                </div>
-
-                <div className={styles.tabContent}>
-                    <h1 className={styles.diseaseTitle}>{results.disease}</h1>
-                    {activeTab === 'home' && <p>{results.home_remedy}</p>}
-                    {activeTab === 'conventional' && <p>{results.conventional_remedy}</p>}
-                    {activeTab === 'otc' && <p>{results.otc_remedy}</p>}
-                    {activeTab === 'herbal' && <p>{results.herbal_remedy}</p>}
-                </div>
-            </div>
-        </div>
-    );
+        <>
+            <ResultsHeader {...props} />
+            <ResultsTabs {...props.results[0]} />
+            <ResultsTabs {...props.results[1]} />
+            <ResultsTabs {...props.results[2]} />
+        </>
+    )
 }

@@ -1,14 +1,12 @@
 import styles from '../pages/ResultsPage.module.css'
-import type { Results } from '../App.tsx';
 
 interface Props {
-    page: string
     setPage: ((page: ("home" | "results")) => void)
     search: string
     setSearch: ((search: string) => void)
 }
 
-export default function ResultsHeader({ page, setPage, search, setSearch }: Props) {
+export default function ResultsHeader({ setPage, search, setSearch }: Props) {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // For demo: simply log input

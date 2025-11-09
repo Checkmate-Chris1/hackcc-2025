@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import HomePage from "./pages/HomePage"
-import ResultsPage from './pages/ResultsPage'
-import ResultsHeader from './components/ResultsHeader.tsx';
+import ResultsPage from './pages/ResultsPage.tsx'
 import './App.css'
 
 export interface Results {
@@ -36,11 +35,7 @@ export default function App() {
     return (
         <>
             {page == "home" && <HomePage {...shared} />}
-            
-            {page == "results" && <ResultsHeader {...{page, setPage, search, setSearch}} />}
-            {page == "results" && <ResultsPage {...shared} results={results_demo} />}
-            {page == "results" && <ResultsPage {...shared} results={results_demo2} />}
-            {page == "results" && <ResultsPage {...shared} results={results_demo} />}
+            {page == "results" && <ResultsPage {...shared} results={[results_demo, results_demo2, results_demo]} /> }
         </>
     )
 }
