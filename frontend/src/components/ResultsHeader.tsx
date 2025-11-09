@@ -4,15 +4,14 @@ interface Props {
     setPage: ((page: ("home" | "results")) => void)
     search: string
     setSearch: ((search: string) => void)
+    fetchResults: (userInput: string) => Promise<void>
 }
 
-export default function ResultsHeader({ setPage, search, setSearch }: Props) {
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // For demo: simply log input
-        console.log("User input:", search);
-        // Later: call backend to get predictions
-    };
+export default function ResultsHeader({ setPage, search, setSearch, fetchResults }: Props) {
+    const handleSubmit = async () => {
+        console.log("Running handleSubmit!")
+        fetchResults(search)
+    }
 
     return (
         <>
@@ -25,7 +24,7 @@ export default function ResultsHeader({ setPage, search, setSearch }: Props) {
                     onChange={(e) => setSearch(e.target.value)}
                     className={styles.searchInput}
                 />
-                <button type="submit" className={styles.submitButton}>Submit</button>
+                <button type="submit" className={styles.submitButton} onClick={handleSubmit} >Back</button>
             </form>
         </>
     )

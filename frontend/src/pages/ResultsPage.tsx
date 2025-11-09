@@ -7,6 +7,7 @@ interface Props {
     setPage: ((page: ("home" | "results")) => void)
     search: string
     setSearch: ((search: string) => void)
+    fetchResults: (userInput: string) => Promise<void>
     results: Results[]
 }
 
