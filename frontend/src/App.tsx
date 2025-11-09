@@ -26,6 +26,11 @@ export default function App() {
             const data = await rawResponse.json();
             setResults([data]); // set the results state
             setPage("results"); // navigate to results page
+            const submitButton = document.getElementById("submitSymtoms") as HTMLButtonElement | null;
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.innerText = "Submit";
+            }
         } catch (err) {
             console.error("Error fetching results:", err);
         }

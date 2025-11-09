@@ -12,6 +12,11 @@ export default function HomePage( {page, setPage, search, setSearch, fetchResult
     const handleSubmit = async () => {
         console.log("Running handleSubmit!")
         fetchResults(search)
+        const submitButton = document.getElementById("submitSymtoms") as HTMLButtonElement | null;
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerText = "...";
+        }
     }
 
     const messages = [
