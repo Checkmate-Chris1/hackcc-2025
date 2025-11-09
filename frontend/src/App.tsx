@@ -29,7 +29,7 @@ export default function App() {
             const submitButton = document.getElementById("submitSymtoms") as HTMLButtonElement | null;
             if (submitButton) {
                 submitButton.disabled = false;
-                submitButton.innerText = "Submit";
+                submitButton.innerHTML = "Submit";
             }
         } catch (err) {
             console.error("Error fetching results:", err);

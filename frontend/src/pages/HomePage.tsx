@@ -15,7 +15,7 @@ export default function HomePage( {page, setPage, search, setSearch, fetchResult
         const submitButton = document.getElementById("submitSymtoms") as HTMLButtonElement | null;
         if (submitButton) {
             submitButton.disabled = true;
-            submitButton.innerText = "...";
+            submitButton.innerHTML = '<div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
         }
     }
 
