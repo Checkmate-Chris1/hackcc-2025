@@ -15,6 +15,8 @@ export default function ResultsPage(props: Props) {
         <>
             <ResultsHeader {...props} />
             <ResultsTabs {...props.results[0]} />
+            <ResultsTabs {...props.results[1]} />
+            <ResultsTabs {...props.results[2]} />
         </>
     )
 }

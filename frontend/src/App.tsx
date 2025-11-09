@@ -25,7 +25,6 @@ export default function App() {
             });
 
             const data: Results[] = await rawResponse.json(); // Expecting a list of 3 Results objects
-
             // Set the state directly with the returned array
             setResults(data); 
             setPage("results"); // navigate to results page
