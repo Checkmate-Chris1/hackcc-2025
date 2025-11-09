@@ -16,7 +16,7 @@ export default function ResultsHeader({ setPage, search, setSearch }: Props) {
 
     return (
         <>
-            <h1 onClick={() => setPage("home")} className="color-primary">Sitename</h1>
+            <h1 onClick={() => setPage("home")} className="color-primary">SickAssist</h1>
             <form className={styles.searchForm} onSubmit={handleSubmit}>
                 <input
                     type="text"
