@@ -5,41 +5,74 @@
     text-align: center;
 }
 
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+h1 {
+    font-family: var(--heading-font);
+    font-size: 4em; 
+    margin: 0px;
+    cursor: pointer;
+}
+.color-primary {
+    color: var(--primary);
+    text-shadow: 
+    0 0 60px var(--third); /* Larger, softer glow */
 }
 
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+.instructions {
+    margin-top: -10px;
+    margin-bottom: 40px;
 }
 
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
+.center-container {
+    height: 80vh;
+    display: grid;
+    align-content: center;
 }
 
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
+#symtomInputBox {
+    width: min(50vw, 1000px) !important;
+    font-family: var(--body-font);
+    font-size: 1em;
+    padding: 15px;
+    
+    field-sizing: content;   /* Enables automatic height adjustment based on content */
+    min-height: 2lh;         /* Sets a minimum height of 2 lines of text */
+    max-height: 10lh;        /* Sets a maximum height of 10 lines of text */
+    overflow-y: auto;        /* Adds a scrollbar if content exceeds max-height */
+    resize: vertical;
 
-    to {
-        transform: rotate(360deg);
-    }
+    border: none;
+    outline: none;
+    background-color: var(--element-background);
+    box-shadow: 0 8px 0 0 var(--element-shadow);
+    border-radius: 10px;
+}
+#symtomInputBox::placeholder {
+  color: var(--element-shadow);
+  opacity: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
-    }
-}
+#submitSymtoms {
+    font-family: var(--heading-font);
+    margin-top: 1.1em;
+    padding: 15px 25px;
+    font-size: 1.5em;
+    cursor: pointer;
 
-.card {
-    padding: 2em;
+    color: var(--text);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: var(--element-background);
+    box-shadow: 0 8px 0 0 var(--element-shadow);
 }
-
-.read-the-docs {
-    color: #888;
+#submitSymtoms:hover, #submitSymtoms:focus {
+    transition: all 0.2s ease-in-out;
+    background-color: var(--primary);
+    color: var(--background);
+    box-shadow: 0 8px 0 0 var(--accent);
+}
+#submitSymtoms:active {
+    transition: all 0.1s ease-in-out;
+    transform: translateY(8px);
+    box-shadow: 0 0 0 0 var(--accent);
 }

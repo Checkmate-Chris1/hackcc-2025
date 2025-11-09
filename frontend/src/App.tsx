@@ -1,66 +1,41 @@
-import { useState } from "react"
-import reactLogo from "./assets/react.svg"
-import viteLogo from "/vite.svg"
-import "./App.css"
+import { useState } from 'react'
+import HomePage from "./pages/HomePage"
+import ResultsPage from './pages/ResultsPage.tsx'
+import './App.css'
 
-function App() {
-
-  const [response, setResponse] = useState('')
-  const [input, setInput] = useState('') // <-- state for textbox
-
-  // USE THIS FOR GETTING AND SENDING A MESSAGE TO THE BACKEND
-  const sendMessage = async () => {
-    try {
-      const res = await fetch("http://127.0.0.1:5000/send_message", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },  // important!
-        body: JSON.stringify({ message: input })           // send textbox value
-      })
-      const text = await res.text()
-      setResponse(text)
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-
-      <h1>Vite + React</h1>
-
-      <div className="card">
-        {/* Textbox added above the button */}
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-        />
-
-        {/* Existing send button */}
-        <button onClick={sendMessage}>Send Message</button>
-
-        {/* Backend response */}
-        <p>{response}</p>
-
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export interface Results {
+    disease: string
+    home_remedy: string
+    conventional_remedy: string
+    otc_remedy: string
+    herbal_remedy: string
 }
 
-export default App
+export default function App() {
+    const [page, setPage] = useState<"home" | "results">("home")
+    const [search, setSearch] = useState<string>("")
+
+    const results_demo: Results = {
+        disease: "Influenza (Flu)",
+        home_remedy: "Get plenty of rest and stay hydrated. Warm fluids like soup and tea can help soothe your throat and loosen congestion.",
+        conventional_remedy: "Doctors may prescribe antiviral medications such as oseltamivir (Tamiflu) or zanamivir (Relenza) to shorten the duration and severity of the flu.",
+        otc_remedy: "Over-the-counter medicines like acetaminophen (Tylenol) or ibuprofen (Advil) can reduce fever and body aches, while cough suppressants and decongestants can ease symptoms.",
+        herbal_remedy: "Elderberry syrup, echinacea, and ginger tea are traditional herbal supports believed to strengthen immune response and ease flu symptoms."
+    };
+    const results_demo2: Results = {
+        disease: "Common Cold",
+        home_remedy: "Drink plenty of fluids and get rest.",
+        conventional_remedy: "Use decongestants or antihistamines as prescribed.",
+        otc_remedy: "Try over-the-counter cold medications like DayQuil or NyQuil.",
+        herbal_remedy: "Ginger tea and honey can help soothe sore throats."
+  };
+
+    const shared = { page, setPage, search, setSearch }
+
+    return (
+        <>
+            {page == "home" && <HomePage {...shared} />}
+            {page == "results" && <ResultsPage {...shared} results={[results_demo, results_demo2, results_demo]} /> }
+        </>
+    )
+}
