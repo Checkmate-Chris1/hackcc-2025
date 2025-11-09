@@ -5,16 +5,13 @@ interface Props {
     setPage: ((page: ("home" | "results")) => void)
     search: string
     setSearch: ((search: string) => void)
+    fetchResults: (userInput: string) => Promise<void>
 }
 
-export default function HomePage( {page, setPage, search, setSearch}: Props ) {
-    const sendMessage = async () => {
-        const response = await fetch('http://127.0.0.1:5000/send_message', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: 'Hello from React button!' }),
-        })
-        console.log("Client received response: ", response)
+export default function HomePage( {page, setPage, search, setSearch, fetchResults }: Props ) {
+    const handleSubmit = async () => {
+        console.log("Running handleSubmit!")
+        fetchResults(search)
     }
 
     const messages = [
@@ -60,7 +57,7 @@ export default function HomePage( {page, setPage, search, setSearch}: Props ) {
 
                     <br />
 
-                    <button id="submitSymtoms" onClick={() => setPage("results")}>Submit</button>
+                    <button id="submitSymtoms" onClick={handleSubmit}>Submit</button>
 
                 </div>
 

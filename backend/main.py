@@ -1,9 +1,10 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+import gemini
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 # Database
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
@@ -31,6 +32,26 @@ def send_message():
     else:
         backend_response = "Hello, I am the backend. How do you do?"
     return backend_response
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    """
+    Receives user input text and returns the predicted disease and remedies.
+    """
+    data = request.get_json()
+    user_input = data.get("message", "")
+    
+    if not user_input:
+        return jsonify({
+            "disease": "Unknown",
+            "home_remedy": "",
+            "conventional_remedy": "",
+            "otc_remedy": "",
+            "herbal_remedy": ""
+        }), 400
+    
+    results = gemini.get_results(user_input)
+    return jsonify(results)
 
 if __name__ == "__main__":
     app.run(debug=True)
