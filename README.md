@@ -1,5 +1,5 @@
 
-# hackcc-2025
+# SickAssist
 
 Write out your feelings and symptoms, and a specially-trained predictive model will suggest remedies.
 Don't think about it too much, just write as if you're chatting to a friend!
