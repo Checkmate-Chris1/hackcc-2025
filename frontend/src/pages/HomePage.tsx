@@ -35,7 +35,7 @@ export default function HomePage( {page, setPage, search, setSearch, fetchResult
 
             <div className="center-container">
 
-                <h1>Welcome to <span className='color-primary'>Sitename</span>!</h1>
+                <h1>Welcome to <span className='color-primary'>Cikacist</span>!</h1>
 
                 <p className='instructions'>
                     Write out your feelings and symptoms in the text box below, and our proprietary predictive model will suggest remedies.
