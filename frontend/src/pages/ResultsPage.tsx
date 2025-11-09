@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import styles from './ResultsPage.module.css';
 
-export default function ResultsPage() {
+interface Props {
+    setPage: ((page: ("home" | "results")) => void)
+    search: string
+}
+
+export default function ResultsPage({ setPage, search }: Props) {
     const [activeTab, setActiveTab] = useState<'home' | 'conventional' | 'otc' | 'herbal'>('home');
     const [inputText, setInputText] = useState('');
 
@@ -14,7 +19,7 @@ export default function ResultsPage() {
 
     return (
         <div className={styles.container}>
-            <h1 className="color-primary">Sitename</h1>
+            <h1 onClick={() => setPage("home")} className="color-primary">Sitename</h1>
             <form className={styles.searchForm} onSubmit={handleSubmit}>
                 <input
                     type="text"

@@ -9,11 +9,12 @@ h1 {
     font-family: var(--heading-font);
     font-size: 4em; 
     margin: 0px;
+    cursor: pointer;
 }
 .color-primary {
     color: var(--primary);
     text-shadow: 
-    0 0 69px var(--third); /* Larger, softer glow */
+    0 0 60px var(--third); /* Larger, softer glow */
 }
 
 .instructions {

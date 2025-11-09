@@ -6,7 +6,6 @@ import ResultsPage from './pages/ResultsPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <ResultsPage />
-        {/* <App /> */}
+        <App />
     </StrictMode>,
 )
