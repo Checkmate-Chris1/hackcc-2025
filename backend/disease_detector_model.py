@@ -1,79 +1,36 @@
+import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, classification_report
-import os
-import joblib
-import re
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.feature_extraction.text import CountVectorizer
 
-# ----------------------
-# Load dataset
-# ----------------------
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(BASE_DIR, "disease_dataset.csv")
-df = pd.read_csv(csv_path)
+df=pd.read_csv(r"disease_dataset.csv")
+print(df.shape)
+print(df.columns)
 
-# ----------------------
-# Clean column names
-# ----------------------
-df.columns = [re.sub(r'[^A-Za-z0-9_]', '_', col) for col in df.columns]
 
-# ----------------------
-# Prepare features/labels
-# ----------------------
 X = df.drop(columns=["diseases"])
 y = df["diseases"]
 
+# Remove classes with less than 2 samples
 counts = y.value_counts()
 valid_classes = counts[counts >= 2].index
 X = X[y.isin(valid_classes)]
 y = y[y.isin(valid_classes)]
 
-# Remove all-zero columns
-X = X.loc[:, (X.sum(axis=0) > 0)]
-
-# Train/test split
+from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y
+    X, y, test_size=0.20, random_state=0, stratify=y
 )
 
-# ----------------------
-# Train Logistic Regression
-# ----------------------
-model = LogisticRegression(
-    solver="liblinear",
-    max_iter=1000,
-    multi_class="auto",
-    verbose=1
-)
-model.fit(X_train, y_train)
+from sklearn.naive_bayes import BernoulliNB
+bnb = BernoulliNB()
+model = bnb.fit(X_train, y_train)
+y_pred = bnb.predict(X_test)
 
-# ----------------------
-# Evaluate
-# ----------------------
-y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy on test set: {accuracy:.4f}")
+from sklearn.metrics import classification_report, accuracy_score
+print("Accuracy:", accuracy_score(y_test, y_pred))
 print(classification_report(y_test, y_pred))
 
-# ----------------------
-# Save model
-# ----------------------
-joblib.dump(model, os.path.join(BASE_DIR, "doctor.pkl"))
-print("The doctor is in!")
-
-# ----------------------
-# Optional: predict function
-# ----------------------
-def predict_disease(user_symptoms):
-    """
-    user_symptoms: list or array of 0s and 1s (same order as X.columns)
-    """
-    import numpy as np
-    X_input = np.array(user_symptoms).reshape(1, -1)
-    prediction = model.predict(X_input)[0]
-    confidence = model.predict_proba(X_input).max()
-    return {
-        "predicted_disease": prediction,
-        "confidence": float(confidence)
-    }
+import joblib
+joblib.dump(model, "doctor.pkl")
+joblib.dump(X.columns.tolist(), "doctor_columns.pkl")
