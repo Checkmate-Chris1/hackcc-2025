@@ -23,8 +23,10 @@ export default function App() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: userInput }),
             });
-            const data = await rawResponse.json();
-            setResults([data]); // set the results state
+
+            const data: Results[] = await rawResponse.json(); // Expecting a list of 3 Results objects
+            // Set the state directly with the returned array
+            setResults(data); 
             setPage("results"); // navigate to results page
             const submitButton = document.getElementById("submitSymtoms") as HTMLButtonElement | null;
             if (submitButton) {
@@ -34,7 +36,8 @@ export default function App() {
         } catch (err) {
             console.error("Error fetching results:", err);
         }
-    }
+    };
+
 
     const shared = { page, setPage, search, setSearch, fetchResults }
 

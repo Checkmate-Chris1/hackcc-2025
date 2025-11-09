@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import gemini
+import process_data
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
@@ -36,22 +37,27 @@ def send_message():
 @app.route("/predict", methods=["POST"])
 def predict():
     """
-    Receives user input text and returns the predicted disease and remedies.
+    Receives user input text and returns the top 3 predicted diseases with remedies.
     """
     data = request.get_json()
     user_input = data.get("message", "")
-    
+
     if not user_input:
-        return jsonify({
+        return jsonify([{
             "disease": "Unknown",
             "home_remedy": "",
             "conventional_remedy": "",
             "otc_remedy": "",
             "herbal_remedy": ""
-        }), 400
-    
-    results = gemini.get_results(user_input)
+        }] * 3), 400
+
+    symptoms: list[str] = gemini.get_symptoms(user_input)
+    diseases: list[tuple[str, int]] = process_data.predict_top_diseases(symptoms, top_n=3)
+    # Get top 3 results
+    results = gemini.get_results(diseases)
+
     return jsonify(results)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

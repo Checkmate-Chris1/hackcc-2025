@@ -7,6 +7,7 @@ interface Props {
     setPage: ((page: ("home" | "results")) => void)
     search: string
     setSearch: ((search: string) => void)
+    fetchResults: (userInput: string) => Promise<void>
     results: Results[]
 }
 
@@ -15,6 +16,8 @@ export default function ResultsPage(props: Props) {
         <>
             <ResultsHeader {...props} />
             <ResultsTabs {...props.results[0]} />
+            <ResultsTabs {...props.results[1]} />
+            <ResultsTabs {...props.results[2]} />
         </>
     )
 }
