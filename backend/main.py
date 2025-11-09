@@ -51,13 +51,13 @@ def predict():
             "herbal_remedy": ""
         }] * 3), 400
 
+    symptoms: list[str] = gemini.get_symptoms(user_input)
+    diseases: list[tuple[str, int]] = process_data.predict_top_diseases(symptoms, top_n=3)
     # Get top 3 results
-    results = gemini.get_results(user_input)
+    results = gemini.get_results(diseases)
 
     return jsonify(results)
 
-
-    return jsonify(results)
 
 if __name__ == "__main__":
     app.run(debug=True)
