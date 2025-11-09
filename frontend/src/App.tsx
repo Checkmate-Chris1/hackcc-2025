@@ -7,10 +7,12 @@ export default function App() {
     const [page, setPage] = useState<"home" | "results">("home")
     const [search, setSearch] = useState<string>("")
 
+    const shared = { page, setPage, search, setSearch }
+
     return (
         <>
-            { page == "home" && <HomePage setPage={setPage} /> }
-            { page == "results" && <ResultsPage setPage={setPage} search= /> }
+            { page == "home" && <HomePage {...shared} /> }
+            { page == "results" && <ResultsPage {...shared} /> }
         </>
     )
 }

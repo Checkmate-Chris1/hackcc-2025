@@ -2,18 +2,19 @@ import { useState } from 'react';
 import styles from './ResultsPage.module.css';
 
 interface Props {
+    page: string
     setPage: ((page: ("home" | "results")) => void)
     search: string
+    setSearch: ((search: string) => void)
 }
 
-export default function ResultsPage({ setPage, search }: Props) {
+export default function ResultsPage({ page, setPage, search, setSearch }: Props) {
     const [activeTab, setActiveTab] = useState<'home' | 'conventional' | 'otc' | 'herbal'>('home');
-    const [inputText, setInputText] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // For demo: simply log input
-        console.log("User input:", inputText);
+        console.log("User input:", search);
         // Later: call backend to get predictions
     };
 
@@ -24,8 +25,8 @@ export default function ResultsPage({ setPage, search }: Props) {
                 <input
                     type="text"
                     placeholder="Enter your symptoms..."
-                    value={inputText}
-                    onChange={(e) => setInputText(e.target.value)}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                     className={styles.searchInput}
                 />
                 <button type="submit" className={styles.submitButton}>Submit</button>

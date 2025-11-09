@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
 
 interface Props {
+    page: string
     setPage: ((page: ("home" | "results")) => void)
+    search: string
+    setSearch: ((search: string) => void)
 }
 
-export default function HomePage( {setPage}: Props ) {
+export default function HomePage( {page, setPage, search, setSearch}: Props ) {
     const sendMessage = async () => {
         const response = await fetch('http://127.0.0.1:5000/send_message', {
             method: 'POST',
@@ -50,6 +53,8 @@ export default function HomePage( {setPage}: Props ) {
                         id="symtomInputBox"
                         cols={90}
                         rows={10}
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                         placeholder={splash}>
                     </textarea>
 
