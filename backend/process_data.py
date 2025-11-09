@@ -3,7 +3,7 @@ import numpy as np
 
 # Load trained model and feature columns
 model_doctor = joblib.load("doctor.pkl")
-model_columns = joblib.load("backend/doctor_columns.pkl")
+model_columns = joblib.load("doctor_columns.pkl")
 
 # Example input: list of symptoms
 user_symptoms = ["loss of sex drive", "premature ejaculation", "penis pain"]
@@ -27,7 +27,8 @@ def predict_top_diseases(user_symptoms_list, top_n=5):
 
     return top_diseases
 
-# Example usage
-result = predict_top_diseases(user_symptoms, top_n=5)
-for disease, confidence in result:
-    print(f"Disease: {disease}, Confidence: {confidence:.4f}")
+if __name__ == "__main__":
+    # Example usage
+    result = predict_top_diseases(user_symptoms, top_n=5)
+    for disease, confidence in result:
+        print(f"Disease: {disease}, Confidence: {confidence:.4f}")
