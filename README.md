@@ -7,10 +7,7 @@ Don't think about it too much, just write as if you're chatting to a friend!
 ## Framework
 
 The website is built on [React](https://react.dev) with a [Python](https://www.python.org) backend.
-
-## Model
-
-The predictive model being used has been specifically trained off of a disease symptom dataset to efficiently provide the most accurate and relevant results.
+The predictive model being used is based on top of Google Gemini.
 
 ## Credits
 
